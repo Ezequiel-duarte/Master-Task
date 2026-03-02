@@ -1,0 +1,14 @@
+{
+    "name": "mastertask/json",
+    "description": "API para Master Task",
+    "type": "project",
+    "require": {
+        "php": ">=8.1",
+        "firebase/php-jwt": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

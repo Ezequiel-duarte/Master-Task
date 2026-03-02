@@ -1,11 +1,10 @@
-version: "3.8"
 
 services:
   php:
     build: .
     container_name: php_app
     volumes:
-      - ./API:/var/www/html
+      - ./:/var/www/html
     ports:
       - "8080:80"
     depends_on:
@@ -16,7 +15,7 @@ services:
     image: mysql:8
     container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
       - "3306:3306"
@@ -24,7 +23,7 @@ services:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   redis:
-    image: redis:latest
+    image: redis:alpine
     container_name: redis
     ports:
       - "6379:6379"
