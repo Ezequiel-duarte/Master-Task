@@ -7,6 +7,12 @@ services:
       - ./:/var/www/html
     ports:
       - "8080:80"
+    environment:
+       JWT_KEY: ${JWT_KEY}
+       DB_HOST: mysql
+       DB_NAME: ${DB_NAME}
+       DB_USER: root
+       DB_PASS: ${DB_PASS}
     depends_on:
       - mysql
       - redis
@@ -15,8 +21,8 @@ services:
     image: mysql:8
     container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
     ports:
       - "3306:3306"
     volumes:

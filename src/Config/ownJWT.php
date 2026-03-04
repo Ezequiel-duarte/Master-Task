@@ -1,17 +1,20 @@
 <?php
-require_once 'config.php';
+namespace App\Config;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Firebase\JWT\SignatureInvalidException;
 use Firebase\JWT\BeforeValidException;
 use Firebase\JWT\ExpiredException;
+use Exception;
+use InvalidArgumentException;
+use UnexpectedValueException;
 
 
-class JWT {
+class ownJWT {
     private const EXPIRATION_TIME = 86400;
 
 public static function generate($userID){
-    if empty($userID){
+    if (empty($userID)){
         throw new InvalidArgumentException('User ID cannot be empty');
     }
 
