@@ -31,10 +31,10 @@ private PDO $db;
     public function createUser(array $data):string|false{
         $stmt = $this->db->prepare("INSERT INTO users (username, email, password)
         VALUES ( ?, ?, ?) ");
-        $password = password_hash($data['userPass'], PASSWORD_DEFAULT);
+        $password = password_hash($data['password'], PASSWORD_DEFAULT);
         $stmt->execute([
-            $data['userName'],
-            $data['userEmail'],
+            $data['username'],
+            $data['email'],
             $password 
         ]);
         return $this->db->lastInsertId();

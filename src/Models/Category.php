@@ -28,7 +28,7 @@ class category{
 
     public function createCategory(array $data): bool{
         $stmt = $this->db->prepare("INSERT INTO categories (name) VALUES (?)");
-        return $stmt->execute([ $data['category_Name'] ]);
+        return $stmt->execute([ $data['name'] ]);
     }
 
     public function deleteCategory(int $categoryId): bool{

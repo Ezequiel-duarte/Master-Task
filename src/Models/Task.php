@@ -59,14 +59,14 @@ class Task {
                 (user_id, title, description, status, priority, category_id, start_date, due_date) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         return $stmt->execute([
-            $data['userId'],
+            $data['user_id'],
             $data['title'],
             $data['description'] ?? null,
             $data['status'] ?? 'pending',
             $data['priority'] ?? 'medium',
-            $data['categoryId'] ?? null,
-            $data['startDate'] ?? null,
-            $data['dueDate'] ?? null
+            $data['category_id'] ?? null,
+            $data['start_date'] ?? null,
+            $data['due_date'] ?? null
         ]);
     }
 

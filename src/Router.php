@@ -1,6 +1,5 @@
 <?php
 namespace App;
-
 class Router{
 
     private $routes = []; 
@@ -21,7 +20,26 @@ class Router{
         $this->routes['DELETE'][$uri] = $callback; 
     }
 
-    public function dispatch($uri, $method){
-
+    public function dispatch(string $uri, string $method, $body, $db){
+         if (!isset($this->routes[$method])) {
+             return  json_encode([
+                'status' => 405,
+                'message' => 'Method Not Allowed'
+             ]);
+        }
+         foreach ($this->routes[$method] as $route => $callback) {
+            $pattern = preg_replace('#\{[^/]+\}#', '([^/]+)', $route);
+            $pattern = "#^{$pattern}$#";
+            if (preg_match($pattern, $uri, $matches)) {
+                array_shift($matches); 
+                [$controller, $action] = $callback;
+                $instance = new $controller($db);
+                return json_encode($instance->$action($body, ...$matches));
+            }
+        }
+        return json_encode([
+         'status' => 404,
+            'message' => 'Route not found'
+        ]);
     }
 }
