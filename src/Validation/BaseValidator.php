@@ -38,6 +38,11 @@ class BaseValidator{
         }
     }
 
+    protected function validateId($id): void {
+        if (!$id || !is_numeric($id) || $id <= 0) {
+           throw new \Exception("ID inválido", 400);
+        }
+    }
 
 
 }

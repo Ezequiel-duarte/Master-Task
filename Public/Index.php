@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../src/Config/Config.php';
 use App\Router;
 use App\Database\Connection;
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -12,6 +14,6 @@ try {
     echo "   Archivo: " . $e->getFile() . " línea " . $e->getLine() . "\n";
 }
 
-require_once __DIR__ . '/../routes/routes.php'; 
+require_once __DIR__ . '/../src/Config/routes.php'; 
 
-$router->dispatch($uri, $method, $body, $db);
+echo $router->dispatch($uri, $method, $body, $db);

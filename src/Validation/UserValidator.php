@@ -49,5 +49,13 @@ class UserValidator extends BaseValidator {
         throw new \Exception("Credenciales inválidas", 401);
     }
 
+    public function validateId($id): void {
+        parent::validateId($id);  
+    }
+    
+    public function bValidate($data){
+       return $this->filterValidateAttributes($data);
+    }
+
 }
 

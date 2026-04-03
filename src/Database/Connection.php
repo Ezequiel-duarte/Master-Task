@@ -21,7 +21,6 @@ class Connection {
                     ]
                 );
             } catch (PDOException $e) {
-                // Loggear error y lanzar excepción controlada
                 error_log("Error de conexión: " . $e->getMessage());
                 throw new \Exception("Error de base de datos");
             }

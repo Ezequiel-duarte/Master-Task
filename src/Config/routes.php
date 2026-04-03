@@ -16,6 +16,7 @@ $router->get('/users', [UserController::class, 'index']);
 $router->get('/users/{id}', [UserController::class, 'show']);
 $router->post('/users', [UserController::class, 'store']);
 $router->delete('/users/{id}', [UserController::class, 'destroy']);
+$router->post('/users/search', [UserController::class, 'search']);
 
 $router->get('/categories', [CategoryController::class, 'index']);
 $router->get('/categories/search', [CategoryController::class, 'search']);

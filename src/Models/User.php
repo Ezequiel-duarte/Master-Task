@@ -22,13 +22,13 @@ private PDO $db;
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getUserByName(string $userEmail): array{
+    public function getUserByEmail(string $email): array{
         $stmt = $this->db->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->execute([$userEmail]);
+        $stmt->execute([$email]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-     public function getUserByEmail(string $userName): array{
+     public function getUserByName(string $userName): array{
         $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
         $stmt->execute([$userName]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
