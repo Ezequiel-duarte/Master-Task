@@ -21,6 +21,8 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
+
 WORKDIR /var/www/html
 
 COPY composer.json composer.lock ./
