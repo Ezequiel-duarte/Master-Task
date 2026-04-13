@@ -41,12 +41,17 @@ class UserValidator extends BaseValidator {
         return $this->filterValidateAttributes($data);
     }
 
-    public function validateLogin(array $data,string $user, string $pass){
-        if(isset($data['password'],$data['username'] ) &&
-        password_verify($pass, $data['password']) && $user === $data['username']){
-            return true;
+    public function validateLogin(array $data){
+          $errors = [];
+        if (empty($data['username'])) {
+            $errors['username'][] = "Username es requerido";
         }
-        throw new \Exception("Credenciales inválidas", 401);
+        if (empty($data['password'])) {
+            $errors['password'][] = "Password es requerido";
+        }
+        if (!empty($errors)) {
+            throw new \Exception(json_encode($errors), 400);
+        }
     }
 
     public function validateId($id): void {
