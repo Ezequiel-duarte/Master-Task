@@ -38,6 +38,7 @@ use App\Validation\UserValidator;
                 'id' => $id
             ];
         }
+        
 
         public function destroy($body, $id){
             $this->UserValidator->validateId($id);
